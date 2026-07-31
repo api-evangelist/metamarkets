@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.metamarkets.com/docs/embedding-the-metamarkets-dashboard
+note: >-
+  Metamarkets ships an embeddable analytics dashboard that customers integrate
+  into their own web surfaces. Captured from the "Embedding the Metamarkets
+  Dashboard" documentation page. This is a client-side embedded UI surface,
+  distinct from the server-side RDI Client Library catalogued under packages/.
+families:
+  - family: embedded-dashboard
+    label: Metamarkets Dashboard (embedded)
+    kind: embedded-analytics-ui
+    description: >-
+      The Metamarkets real-time programmatic-advertising analytics dashboard,
+      embeddable into a customer's own application.
+    docs: https://docs.metamarkets.com/docs/embedding-the-metamarkets-dashboard

@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.metamarkets.com/docs/rdi-client-library
+note: >-
+  The RDI client Java distribution ships command-line utilities for posting event
+  data to the Metamarkets RDI API. These are bundled scripts in the distribution
+  tar (bin/ directory), configured via conf/rdi.properties (and conf/kafka.properties
+  for the Kafka consumer). The binary/library itself is catalogued in
+  packages/metamarkets-packages.yml; this file records the command surface.
+install:
+  - method: tarball
+    url: https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/com/metamx/rdi-client-distribution/0.13/rdi-client-distribution-0.13-dist.tar.gz
+    note: Unpack the tar; run scripts from bin/ with config in conf/.
+config_files:
+  - conf/rdi.properties   # rdi.url, rdi.username, rdi.password, rdi.connection.count
+  - conf/kafka.properties # group.id, zookeeper.connect (Kafka consumer only)
+commands:
+  - name: bin/rdi-send-files.sh
+    summary: >-
+      Post newline-separated JSON event records from one or more plain-text files
+      to the configured RDI endpoint.
+    usage: bin/rdi-send-files.sh sample_data_1.txt sample_data_2.txt
+  - name: bin/rdi-kafka-consumer.sh
+    summary: >-
+      Consume pre-serialized event records from a Kafka topic and deliver them to
+      the RDI endpoint (guaranteed-delivery, manual commit).
+    usage: bin/rdi-kafka-consumer.sh

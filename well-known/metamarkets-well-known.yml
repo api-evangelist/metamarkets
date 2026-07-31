@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: probed
+note: >-
+  Probed the /.well-known/ discovery surface on the primary Metamarkets host.
+  metamarkets.com resolves but serves a "Site Not Configured | 404" page (the
+  company was acquired by Snap Inc. in 2017 and the primary site is defunct);
+  no well-known discovery documents are published. Absence recorded as valid
+  data. The only surviving live surface is the legacy docs at
+  docs.metamarkets.com (ReadMe-hosted).
+host: https://metamarkets.com
+documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404

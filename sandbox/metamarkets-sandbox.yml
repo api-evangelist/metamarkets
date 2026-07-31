@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.metamarkets.com/docs/real-time-data-delivery
+note: >-
+  Metamarkets publishes test/evaluation ingestion endpoints and a bundled testing
+  utility for trying RDI before production integration. Values captured verbatim
+  from the docs; no credentials are published (username/password are issued per
+  customer by a Metamarkets data engineer).
+test_endpoints:
+  - host: rt-evaluate.metamarkets.com
+    url_form: https://rt-evaluate.metamarkets.com/events/<endpoint-name>
+    role: evaluation ingestion endpoint (curl test example in Real-Time Data Delivery)
+  - host: rt-test.mmx.io
+    url_form: https://rt-test.mmx.io/events/<your-endpoint>
+    role: test RDI URL used in the RDI Client Library rdi.properties example
+testing_tool:
+  name: RDI client testing utility
+  command: bin/rdi-send-files.sh sample_data_1.txt sample_data_2.txt
+  input: uncompressed plain-text files of newline-separated JSON event records
+  note: Bundled with the rdi-client distribution tar for posting sample data to RDI.
+curl_example: >-
+  curl --data-binary @realtime.json.gz --user <username>:<password>
+  -H'Content-Type: application/json' -H'Content-Encoding: gzip'
+  https://rt-evaluate.metamarkets.com/events/endpoint-name -v
+credentials:
+  self_service: false
+  note: Username, password, and data feed are supplied by a Metamarkets data engineer.

@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.metamarkets.com/docs/real-time-data-delivery
+format: http-status
+note: >-
+  The RDI ingestion API signals outcomes via HTTP status codes on the POST to the
+  events endpoint (no application/problem+json envelope is documented). A
+  successful post returns an HTTP 2xx within 50-100ms. Error codes and remediation
+  captured verbatim from the Real-Time Data Delivery and RDI Client Library docs.
+envelope: http-status-code
+problems:
+  - status: 401
+    title: Unauthorized / permission problem
+    meaning: >-
+      Incorrect credentials or no permission to perform the POST to the endpoint.
+    action: >-
+      Confirm the HTTP client is using the correct HTTPS endpoint URL and the
+      username/password issued by Metamarkets.
+  - status: 404
+    title: No such resource
+    meaning: The endpoint URL does not exist / is incorrect.
+    action: Confirm the correct HTTPS endpoint URL.
+  - status: 420
+    title: Enhance Your Calm — quota / rate limit exceeded
+    meaning: >-
+      The delivered volume exceeded the per-agreement events-per-time-period
+      quota. The undelivered data should be dropped or re-sent using exponential
+      backoff.
+    action: >-
+      Reduce the posting rate; do not backfill all at once. Increase throughput to
+      no more than twice the normal rate until timestamps are near current. Contact
+      the Metamarkets account manager to review the quota.
+  - status: 5xx
+    title: Server unavailable / overloaded
+    meaning: RDI servers are temporarily unavailable or overloaded.
+    action: >-
+      Drop the undelivered data or retry using an exponential backoff pattern.

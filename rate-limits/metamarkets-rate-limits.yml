@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.metamarkets.com/docs/real-time-data-delivery
+note: >-
+  RDI enforces a per-customer volume quota (maximum events per stated time period)
+  agreed with Metamarkets, sized from the customer's stated average and peak
+  delivery volume (GB/sec or GB/hour) with headroom for peaks. The quota is
+  contract-specific, not a fixed public number, so no numeric limit_count is
+  recorded. Exceeding it is signaled with an HTTP 420 response.
+rate_limits:
+  - scope: ingestion volume quota
+    signal: HTTP 420
+    limit_count: null
+    window: per-agreement (events per stated time period)
+    remediation: >-
+      Drop or re-send undelivered data with exponential backoff; do not backfill
+      all at once. Increase throughput to no more than twice the normal rate until
+      timestamps are near current. Contact the Metamarkets account manager to
+      review or change the quota.

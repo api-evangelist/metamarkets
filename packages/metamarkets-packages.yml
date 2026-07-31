@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.metamarkets.com/docs/rdi-client-library
+note: >-
+  Metamarkets shipped a first-party Java client library ("RdiClient for Java")
+  for posting event streams to the Real-Time Data Ingestion (RDI) API. Artifacts
+  were hosted on the Metamarkets Artifactory Maven repository (not Maven Central)
+  with source on the metamx GitHub org. Versions are the last-published beta
+  releases; the hosting infrastructure may be offline following the 2017 Snap
+  acquisition, but the coordinates and source repos are recorded verbatim from
+  the docs.
+packages:
+  - language: java
+    registry: artifactory
+    name: com.metamx:rdi-client-core
+    version: '0.12'
+    repository: https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/
+    source: https://github.com/metamx/rdi-client-java
+    javadocs: https://metamx.github.io/rdi-client-java/static/apidocs/0.13/
+    official: true
+    description: >-
+      Core RDI client for Java — handles HTTPS connection, HTTP Basic auth,
+      serialization & batching of events, connection pooling, HTTP transport, and
+      exponential-backoff retry error handling.
+  - language: java
+    registry: artifactory
+    name: com.metamx:rdi-client
+    version: 0.0.13
+    repository: https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/
+    source: https://github.com/metamx/rdi-client-java
+    official: true
+    description: RDI client distribution (includes Kafka consumer implementation).
+  - language: java
+    registry: artifactory
+    name: com.metamx:rad-tech-datatypes
+    source: https://github.com/metamx/rad-tech-datatypes
+    official: true
+    description: >-
+      Jackson-based serialization library for generating the OpenRTB-based
+      MmxAuctionSummary event records used with the RDI client.
+distributions:
+  - name: rdi-client-distribution
+    version: '0.13'
+    url: https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/com/metamx/rdi-client-distribution/0.13/rdi-client-distribution-0.13-dist.tar.gz

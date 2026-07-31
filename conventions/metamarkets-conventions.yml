@@ -1,0 +1,55 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.metamarkets.com/docs/real-time-data-delivery
+note: >-
+  Cross-cutting request/response semantics for the Metamarkets Real-Time Data
+  Ingestion (RDI) API, captured from the Real-Time Data Delivery and RDI Client
+  Library documentation. RDI is a customer-to-Metamarkets event ingestion API:
+  clients continuously POST batches of newline-delimited JSON event records over
+  a persistent HTTPS connection pool.
+authentication:
+  style: http-basic
+  transport: https-required
+  ref: authentication/metamarkets-authentication.yml
+transport:
+  protocol: https
+  method: POST
+  path_form: /events/<endpoint-name>
+  connection: persistent (HTTP/1.1 keep-alive), connection pool (max ~4 connections), 15s timeout
+data_format:
+  content_type: application/json
+  encoding: UTF-8
+  structure: newline-delimited JSON (one event record per line)
+  schema: OpenRTB 2.5-based records (e.g. MmxAuctionSummary); see Integration Guides
+compression:
+  supported: [gzip]
+  header: 'Content-Encoding: gzip'
+  note: Only gzip is supported; the client library compresses events itself.
+batching:
+  single_event_posting: false
+  note: All data must be batched; single-event posting is not supported.
+  recommended_batch_size: 300-600 KB pre-compressed (max ~1 MB compressed per file)
+  flush_triggers: [max batch event count (flushCount), max batch size in bytes (flushBytes), explicit flush()]
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key mechanism is documented. Delivery reliability is handled by
+    at-least-once retry with exponential backoff; consumers are expected to
+    tolerate potential re-sends.
+retries:
+  strategy: exponential-backoff
+  default_max_retries: 20
+  note: Default retry budget can span up to ~15 minutes.
+rate_limit_signaling:
+  mechanism: HTTP 420 (quota / events-per-time-period exceeded)
+  ref: rate-limits/metamarkets-rate-limits.yml
+freshness:
+  current_window: >-
+    events must have a timestamp within ~10-15 minutes of post time to be surfaced
+    in real time; late data (>30 min) is surfaced within ~24 hours; >1 day requires
+    a backfill arranged with the account manager.
+error_handling:
+  envelope: http-status-code
+  ref: errors/metamarkets-problem-types.yml
+support:
+  email: support@metamarkets.com

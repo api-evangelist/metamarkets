@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.metamarkets.com/docs/getting-started
+note: >-
+  Standards taken verbatim from the "Official Standards" section of the
+  Metamarkets Real-Time Data Ingestion (RDI) getting-started documentation, which
+  states the platform adheres to the following recognized ad-tech and data
+  standards. These are data/interchange conformance claims, not a published
+  security-compliance program.
+standards:
+  - id: openrtb-2.5
+    name: OpenRTB API Specification Version 2.5 (real-time bidding)
+    conforms: true
+    evidence: getting-started Official Standards list
+  - id: iab-guidelines
+    name: IAB Guidelines, Standards, and Best Practices
+    conforms: true
+    evidence: getting-started Official Standards list
+  - id: iso8601
+    name: ISO 8601 timestamps, offsets, and recurring intervals
+    conforms: true
+    evidence: getting-started Official Standards list
+  - id: iso3166
+    name: ISO 3166 country and region codes
+    conforms: true
+    evidence: getting-started Official Standards list
+  - id: iso639-1
+    name: ISO 639-1 / alpha-2 two-letter language codes
+    conforms: true
+    evidence: getting-started Official Standards list
+  - id: iso4217
+    name: ISO 4217 international currency codes
+    conforms: true
+    evidence: getting-started Official Standards list
+  - id: unlocode
+    name: United Nations Code for Trade and Transport Locations (city codes)
+    conforms: true
+    evidence: getting-started Official Standards list
