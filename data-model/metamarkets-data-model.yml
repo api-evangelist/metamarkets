@@ -1,0 +1,192 @@
+generated: '2026-08-12'
+method: searched
+source:
+  - https://docs.metamarkets.com/docs/integration-guide-for-exchanges
+  - https://docs.metamarkets.com/docs/integration-guide-for-dsps
+note: >-
+  Entity/relationship model of the Metamarkets Real-Time Data Ingestion (RDI)
+  event payload, captured from the published Integration Guide for Exchanges and
+  Integration Guide for DSPs. There is no OpenAPI to derive from — RDI is a
+  single-operation ingestion endpoint whose contract is the JSON record schema —
+  so the model is read directly from the provider's own schema tables. The record
+  schema is based on the OpenRTB API Specification Version 2.5; only the objects,
+  fields and enumerations Metamarkets documents are recorded here.
+base_standard:
+  name: OpenRTB API Specification Version 2.5
+  url: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
+join_key:
+  field: id
+  alias_in_child_records: request_id
+  note: >-
+    The unique auction identifier. Metamarkets joins Impression Win, Click and
+    Conversion records back to the Auction Summary Record on this primary key;
+    records missing request_id are not surfaced on the dashboard. A timestamp
+    field (ISO 8601, UTC) is also REQUIRED on every record or it is discarded.
+record_types:
+  - name: AuctionSummaryRecord
+    description: >-
+      Top-level record: an OpenRTB BidRequest with the bid responses nested in, one
+      record per line of newline-delimited JSON.
+    root_object: BidRequest
+  - name: ImpressionWinRecord
+    description: >-
+      Indicates the impression was delivered/served; typically carries charge_price
+      and publisher_revenue. Joined back to the auction summary record.
+    fields: [timestamp, request_id, charge_price, publisher_revenue]
+  - name: ClickRecord
+    description: >-
+      Indicates a click occurred; may consist only of a timestamp and the ID of the
+      original request. Delivered to an additional RDI endpoint.
+    fields: [timestamp, request_id]
+  - name: ConversionRecord
+    description: >-
+      Indicates the desired intent of the advertisement completed; typically the
+      original auction summary record with a conversions object appended. Posted to
+      a separate endpoint provided by Metamarkets.
+    fields: [id, timestamp, auction_timestamp, conversions]
+  - name: WinNotificationRecord
+    description: Win notice used to count winning bids (DSP integration guide).
+entities:
+  - name: BidRequest
+    label: Auction summary record (top level)
+    fields:
+      - {field: timestamp, type: string, required: true, note: 'ISO 8601, UTC'}
+      - {field: id, type: string, required: true, note: unique auction identifier}
+      - {field: at, type: integer, note: '1 = first price, 2 = second price'}
+      - {field: battr, type: 'array[integer]', note: blocked creative attributes (OpenRTB list 5.3)}
+      - {field: bcat, type: string, note: blocked advertiser categories (IAB content categories)}
+      - {field: btype, type: 'array[integer]', note: blocked creative types (OpenRTB list 5.2)}
+  - name: Imp
+    label: Impression object
+    fields:
+      - {field: bidfloor, type: double, note: price floor of auction in CPM}
+      - {field: secure, type: boolean}
+      - {field: tagid, type: string, note: ad placement ID (ad tag)}
+      - {field: displaymanager, type: string}
+      - {field: displaymanagerver, type: string}
+  - name: Banner
+    label: Banner child of imp
+    fields: [pos, h, w, expandable, api]
+  - name: Video
+    label: Video child of imp
+    fields: [minduration, maxduration, protocols, startdelay, playbackmethod, delivery]
+  - name: Audio
+    label: Audio child of imp
+    fields: [minduration, maxduration, protocols, startdelay, delivery]
+  - name: App
+    label: In-app impression metadata (used in absence of site)
+    fields: [id, name, domain, bundle, storeurl, version, cat]
+  - name: Site
+    label: Page impression metadata (used in absence of app)
+    fields: [id, name, domain, cat]
+  - name: Publisher
+    label: Publisher child of app/site
+    fields: [id, name]
+  - name: Device
+    fields: [connectiontype, carrier, make, model, type, dnt, os, macmd5, dpidmd5, dpidsha1, didmd5, didsha1, macsha1, ifa]
+  - name: Geo
+    label: Geo child of device
+    fields:
+      - {field: country, type: string, note: ISO 3166}
+      - {field: region, type: string, note: ISO 3166-2}
+      - {field: type, type: integer, note: origin of geographic info (OpenRTB list 5.20)}
+      - {field: dma, type: string}
+      - {field: metro, type: string}
+  - name: Ext
+    label: Extension object; can be a child of any other object
+    fields:
+      - {field: uid, type: string, note: unique ID used for uniques (HyperLogLog) calculation}
+    note: Encapsulates non-standard fields that have been pre-approved by Metamarkets.
+  - name: User
+    fields: [id, gender, yob]
+  - name: Data
+    label: Data child of user
+    fields: [id, name]
+  - name: Segment
+    label: Segment child of data
+    fields: [id, name, value]
+  - name: BidResponse
+    fields: [id, bidder_id, cur, nbr, status, seatbid]
+  - name: SeatBid
+    fields: [seat, bid]
+  - name: Bid
+    fields: [id, price, status, cid, crid, adomain, attr, clear_price]
+  - name: Advertiser
+    label: Advertiser object (DSP integration guide only)
+relationships:
+  - {from: BidRequest, to: Imp, kind: has_many, via: imp, note: only the first object is used}
+  - {from: Imp, to: Banner, kind: has_one, via: banner}
+  - {from: Imp, to: Video, kind: has_one, via: video}
+  - {from: Imp, to: Audio, kind: has_one, via: audio}
+  - {from: BidRequest, to: App, kind: has_one, via: app}
+  - {from: BidRequest, to: Site, kind: has_one, via: site}
+  - {from: App, to: Publisher, kind: has_one, via: publisher}
+  - {from: Site, to: Publisher, kind: has_one, via: publisher}
+  - {from: BidRequest, to: Device, kind: has_one, via: device}
+  - {from: Device, to: Geo, kind: has_one, via: geo}
+  - {from: Device, to: Ext, kind: has_one, via: ext}
+  - {from: BidRequest, to: User, kind: has_one, via: user}
+  - {from: User, to: Data, kind: has_one, via: data}
+  - {from: Data, to: Segment, kind: has_many, via: segment}
+  - {from: BidRequest, to: BidResponse, kind: has_many, via: bid_responses}
+  - {from: BidResponse, to: SeatBid, kind: has_many, via: seatbid}
+  - {from: SeatBid, to: Bid, kind: has_many, via: bid}
+  - {from: ImpressionWinRecord, to: BidRequest, kind: belongs_to, via: request_id}
+  - {from: ClickRecord, to: BidRequest, kind: belongs_to, via: request_id}
+  - {from: ConversionRecord, to: BidRequest, kind: belongs_to, via: id}
+enumerations:
+  - name: bid_responses[].status
+    label: BidResponse-level status
+    values:
+      1: Valid
+      2: Timeout
+      3: Invalid JSON
+      4: HTTP Error
+    note: >-
+      If the response status is not 1 (valid response), the seatbid array should be
+      omitted for that response.
+  - name: seatbid[].bid[].status
+    label: Bid-level status
+    values:
+      1: Won
+      2: Lost on Price (normal loss)
+      3: Below Floor
+      4: Markup Delivery Failure
+      5: Unscreenable
+      6: Blocked by Publisher
+      7: Unverified Creative
+      8: Blocked Advertiser
+      9: Blocked Content Category
+      10: Blocked Creative Attribute
+metrics:
+  raw:
+    - {metric: Bid Requests, field: request_id}
+    - {metric: Bid Responses, field: bid_responses}
+    - {metric: Clicks, field: Click Record}
+    - {metric: Conversions, field: Conversion Record}
+    - {metric: Impressions, field: Impression Record}
+    - {metric: Winning Bids, field: Win Notice Record}
+    - {metric: Floor Price, field: bidfloor}
+    - {metric: Revenue, field: advertiser_charge_price}
+    - {metric: Spend, field: charge_price}
+    - {metric: Video Duration, field: video object}
+  computed:
+    - {metric: CTR, formula: (Clicks / Impressions) * 100}
+    - {metric: eCPM, formula: (spend / impressions) * 1000}
+    - {metric: eCPC, formula: (Revenue / Clicks) * 1000}
+    - {metric: eCPA, formula: (spend / conversions) * 1000}
+    - {metric: Fill Rate, formula: (Impressions / Winning Bids) * 100}
+    - {metric: Win Rate, formula: (Winning Bids / Bids) * 100}
+    - {metric: Profit, formula: Advertiser Charge Price - Spend}
+    - {metric: Profit Margin, formula: (Profit / Revenue) * 100}
+    - {metric: Avg. Bid Floor, formula: sum(bid_floor) / requests}
+    - {metric: Avg. Winning Bid Price, formula: sum(winning_bid_price) / winning bids}
+processing:
+  realtime_join_window: 20 minutes
+  batch_fixup_interval: approximately every 4 hours
+  batch_join_window: up to 2 hours
+  raw_data_retention: 14 days before purging
+  storage: denormalized (Druid)
+x-evidence:
+  - {url: 'https://docs.metamarkets.com/docs/integration-guide-for-exchanges.md', http_status: 200, fetched: '2026-08-12'}
+  - {url: 'https://docs.metamarkets.com/docs/integration-guide-for-dsps.md', http_status: 200, fetched: '2026-08-12'}

@@ -1,23 +1,44 @@
-generated: '2026-07-20'
+generated: '2026-08-12'
 method: searched
 source: https://docs.metamarkets.com/docs/rdi-client-library
 note: >-
-  Metamarkets shipped a first-party Java client library ("RdiClient for Java")
-  for posting event streams to the Real-Time Data Ingestion (RDI) API. Artifacts
-  were hosted on the Metamarkets Artifactory Maven repository (not Maven Central)
-  with source on the metamx GitHub org. Versions are the last-published beta
-  releases; the hosting infrastructure may be offline following the 2017 Snap
-  acquisition, but the coordinates and source repos are recorded verbatim from
-  the docs.
+  Metamarkets shipped a first-party Java client library ("RdiClient for Java") for
+  posting event streams to the Real-Time Data Ingestion (RDI) API. Artifacts were
+  hosted on the Metamarkets Artifactory Maven repository — NOT Maven Central — with
+  source on the metamx GitHub org. CURRENCY FINDING (probed 2026-08-12): the
+  Artifactory server is gone. https://metamx.artifactoryonline.com/... returns HTTP
+  403 for the repository root, the artifact directories and the distribution tar,
+  and the successor host metamx.jfrog.io 302s to
+  https://landing.jfrog.com/reactivate-server/metamx — i.e. the JFrog instance is
+  deactivated. None of these coordinates are installable today. Maven Central
+  carries 22 com.metamx artifacts (java-util, emitter, scala-util, tranquility...)
+  but NONE of the RDI ones, so there is no mirror. Because no registry answers,
+  `version` is taken from the versions the docs name and `published` from the
+  matching annotated tag in the public GitHub source repo — the only dated,
+  first-party evidence that survives. The library is documented as beta and its last
+  release predates the 2017 Snap Inc. acquisition by roughly a year.
+registry_probe:
+  - {url: 'https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/', http_status: 403}
+  - {url: 'https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/com/metamx/rdi-client-core/maven-metadata.xml', http_status: 403}
+  - {url: 'https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/com/metamx/rdi-client-distribution/0.13/rdi-client-distribution-0.13-dist.tar.gz', http_status: 403}
+  - {url: 'https://metamx.jfrog.io/artifactory/pub-libs-releases-local/com/metamx/rdi-client-core/maven-metadata.xml', http_status: 302, redirect: 'https://landing.jfrog.com/reactivate-server/metamx'}
+  - {url: 'https://search.maven.org/solrsearch/select?q=g:com.metamx', http_status: 200, result: '22 com.metamx artifacts, none of them RDI'}
 packages:
   - language: java
     registry: artifactory
     name: com.metamx:rdi-client-core
     version: '0.12'
+    published: '2016-05-24'
+    published_source: >-
+      GitHub tag rdi-client-0.12 in metamx/rdi-client-java (commit date); the
+      Artifactory registry no longer answers, so no registry-published date exists.
+    status: unavailable
     repository: https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/
+    repository_status: 403
     source: https://github.com/metamx/rdi-client-java
     javadocs: https://metamx.github.io/rdi-client-java/static/apidocs/0.13/
     official: true
+    maturity: beta
     description: >-
       Core RDI client for Java — handles HTTPS connection, HTTP Basic auth,
       serialization & batching of events, connection pooling, HTTP transport, and
@@ -26,19 +47,53 @@ packages:
     registry: artifactory
     name: com.metamx:rdi-client
     version: 0.0.13
+    published: null
+    published_source: >-
+      Version is the coordinate the RDI Client Library docs show in the Logback /
+      log4j dependency examples. No registry answers and no GitHub tag carries this
+      exact string (the repo tags releases as rdi-client-<n>), so the publish date
+      is genuinely unknown rather than guessed.
+    status: unavailable
     repository: https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/
+    repository_status: 403
     source: https://github.com/metamx/rdi-client-java
     official: true
-    description: RDI client distribution (includes Kafka consumer implementation).
+    description: RDI client distribution artifact used in the documented dependency blocks.
+  - language: java
+    registry: artifactory
+    name: com.metamx:rdi-client-distribution
+    version: '0.13'
+    published: '2016-08-17'
+    published_source: >-
+      GitHub tag rdi-client-0.13 in metamx/rdi-client-java (commit date), the latest
+      tag on the repo; matches the 0.13 distribution the docs link.
+    status: unavailable
+    download: https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/com/metamx/rdi-client-distribution/0.13/rdi-client-distribution-0.13-dist.tar.gz
+    download_status: 403
+    source: https://github.com/metamx/rdi-client-java
+    official: true
+    description: >-
+      Runnable distribution tarball (bin/, conf/, lib/) carrying the RDI send-files
+      utility and the Kafka consumer. Command surface recorded in
+      cli/metamarkets-cli.yml.
   - language: java
     registry: artifactory
     name: com.metamx:rad-tech-datatypes
+    version: 0.0.6
+    published: '2015-06-01'
+    published_source: >-
+      GitHub tag rad-tech-datatypes-0.0.6 in metamx/rad-tech-datatypes (commit
+      date), the latest tag on the repo. The docs name the library but not a
+      version.
+    status: unavailable
+    repository: https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/
+    repository_status: 403
     source: https://github.com/metamx/rad-tech-datatypes
     official: true
     description: >-
       Jackson-based serialization library for generating the OpenRTB-based
       MmxAuctionSummary event records used with the RDI client.
-distributions:
-  - name: rdi-client-distribution
-    version: '0.13'
-    url: https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/com/metamx/rdi-client-distribution/0.13/rdi-client-distribution-0.13-dist.tar.gz
+x-evidence:
+  - {url: 'https://docs.metamarkets.com/docs/rdi-client-library.md', http_status: 200, fetched: '2026-08-12'}
+  - {url: 'https://api.github.com/repos/metamx/rdi-client-java/tags', http_status: 200, fetched: '2026-08-12'}
+  - {url: 'https://metamx.github.io/rdi-client-java/static/apidocs/0.13/', http_status: 200, fetched: '2026-08-12'}

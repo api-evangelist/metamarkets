@@ -1,0 +1,84 @@
+generated: '2026-08-12'
+method: searched
+source:
+  - https://docs.metamarkets.com/docs/rdi-client-library
+  - https://docs.metamarkets.com/docs/faq
+  - https://docs.metamarkets.com/docs/getting-started
+note: >-
+  Lifecycle posture of the Metamarkets Real-Time Data Ingestion (RDI) API,
+  recorded from the surviving legacy documentation and live probes. Metamarkets
+  was acquired by Snap Inc. in 2017; the corporate site (metamarkets.com) now
+  returns HTTP 404 and the only live surface is the ReadMe-hosted legacy docs at
+  docs.metamarkets.com. No deprecation policy, no SLA and no changelog are
+  published, and the Statuspage host survives only as a deactivated shell. Each
+  absence was probed, and no StatusPage, Deprecation or ChangeLog pointer is
+  emitted for this provider as a result.
+versioning:
+  api_scheme: none
+  note: >-
+    The ingestion endpoint carries no version in its path or headers
+    (https://<host>/events/<endpoint-name>). What is versioned is the PAYLOAD
+    contract (OpenRTB API Specification Version 2.5, per the Official Standards
+    list) and the first-party client library.
+  payload_standard: OpenRTB 2.5
+  client_library:
+    name: RdiClient for Java
+    current: '0.13'
+    maturity: beta
+    quote: >-
+      "The RdiClient for Java is currently in beta and the current version is 0.13."
+    docs: https://docs.metamarkets.com/docs/rdi-client-library
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No deprecation or sunset policy is published anywhere in the documentation, and
+    no Deprecation/Sunset (RFC 8594) header support is documented.
+sla:
+  url: null
+  uptime_target: null
+  note: No SLA or uptime commitment is published.
+status_page: null
+status_page_probe:
+  - url: https://status.metamarkets.com/
+    http_status: 200
+    probed: '2026-08-12'
+    result: inactive
+    detail: >-
+      status.metamarkets.com still CNAMEs to Atlassian Statuspage
+      (8sbrq3zs63md.stspg-customer.com) and answers HTTP 200, but the page title is
+      "Metamarkets Status - Page Inactive" and every API path
+      (/api/v2/status.json, /api/v2/summary.json, /history.rss) 302s to the
+      deactivated metamarkets.statuspage.io. The host resolves; the status page
+      does not exist. NO StatusPage pointer is emitted — a 200 carrying a
+      deactivation shell is not a served status page.
+changelog: null
+data_retention:
+  raw: 14 days before purging
+  processed: length of the retention period defined in the contract
+  source: https://docs.metamarkets.com/docs/faq
+processing_windows:
+  realtime_join_window: 20 minutes
+  batch_fixup: approximately every 4 hours (6-12 hour delay per FAQ)
+  batch_join_window: up to 2 hours
+company_lifecycle:
+  status: acquired-defunct
+  acquirer: Snap Inc.
+  acquired: '2017'
+  live_surfaces:
+    - {url: 'https://docs.metamarkets.com/', http_status: 200, note: legacy ReadMe-hosted RDI documentation}
+  dead_surfaces:
+    - {url: 'https://metamarkets.com/', http_status: 404, note: 'primary site returns "Site Not Configured | 404"'}
+    - {url: 'https://metamarkets.com/what-we-do/security/', http_status: 404, note: security practices page linked from the FAQ is gone}
+    - {url: 'https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/', http_status: 403, note: first-party Maven repository hosting the RDI client JARs}
+    - {url: 'https://metamx.jfrog.io/artifactory/pub-libs-releases-local/com/metamx/rdi-client-core/maven-metadata.xml', http_status: 302, note: 'redirects to landing.jfrog.com/reactivate-server/metamx — the Artifactory server is deactivated'}
+  note: >-
+    The GitHub organization behind the client libraries (github.com/metamx) is
+    still public and lists ops@rilldata.com as its contact; source for the RDI
+    client and the RadTech datatypes remains readable there even though the
+    binaries are no longer downloadable.
+deprecated_operations: []
+x-evidence:
+  - {url: 'https://docs.metamarkets.com/docs/rdi-client-library.md', http_status: 200, fetched: '2026-08-12'}
+  - {url: 'https://metamarkets.com/', http_status: 404, fetched: '2026-08-12'}
+  - {url: 'https://metamx.artifactoryonline.com/metamx/pub-libs-releases-local/', http_status: 403, fetched: '2026-08-12'}

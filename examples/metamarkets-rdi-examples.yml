@@ -1,0 +1,64 @@
+generated: '2026-08-12'
+method: searched
+source: https://docs.metamarkets.com/docs/integration-guide-for-exchanges
+note: >-
+  Request payload examples for the Metamarkets Real-Time Data Ingestion (RDI)
+  API, saved VERBATIM from the published Integration Guide for Exchanges. There
+  is no OpenAPI for RDI, so these published sample records are the concrete
+  contract an integrator codes against. Records must be delivered to RDI flat —
+  one record per line, newline-separated — the pretty-printed form here is the
+  provider's own rendering for readability. The conversion example is abbreviated
+  by the provider (it uses "..." placeholders) so it is kept inline as text
+  rather than as a parseable .json file.
+examples:
+  - name: Auction summary record (with nested bids)
+    kind: request-payload
+    record_type: AuctionSummaryRecord
+    file: metamarkets-auction-summary-record.json
+    docs: https://docs.metamarkets.com/docs/integration-guide-for-exchanges
+    note: >-
+      A single auction summary event for mobile, video and private marketplace,
+      structured per OpenRTB 2.5. The winning bidder is denoted with an
+      "auction_winner" flag in the bid response object.
+  - name: Impression win record
+    kind: request-payload
+    record_type: ImpressionWinRecord
+    file: metamarkets-impression-record.json
+    docs: https://docs.metamarkets.com/docs/integration-guide-for-exchanges
+    note: request_id is the auction ID; the timestamp applies to the impression.
+  - name: Click record
+    kind: request-payload
+    record_type: ClickRecord
+    file: metamarkets-click-record.json
+    docs: https://docs.metamarkets.com/docs/integration-guide-for-exchanges
+    note: request_id is the auction ID; the timestamp applies to the time of the click.
+  - name: Conversion record (abbreviated by the provider)
+    kind: request-payload
+    record_type: ConversionRecord
+    docs: https://docs.metamarkets.com/docs/integration-guide-for-exchanges
+    body: |
+      {
+        "id": "AFEWSEBD5EB5FI32DASFCD452BB78DVE",
+        "timestamp": "2014-03-07T03:15:00.000Z",
+        "auction_timestamp": "2014-03-07T03:15:00.000Z",
+        "at": 2,
+        "bcat": ["IAB26","IAB25"],
+        "app": { ... },
+        "imp": [ ... ],
+        "device": { ... },
+        "user": { ... },
+        "bid_responses": [ ... ],
+        "conversions":  {
+              "conversion_charge": 10,
+              "conversion_type": "Subscription"
+                }
+      }
+  - name: Delivering a gzipped batch with curl
+    kind: request-invocation
+    docs: https://docs.metamarkets.com/docs/real-time-data-delivery
+    body: |
+      curl --data-binary @realtime.json.gz --user <username>:<password> \
+        -H'Content-Type: application/json' -H'Content-Encoding: gzip' \
+        https://rt-evaluate.metamarkets.com/events/endpoint-name -v
+x-evidence:
+  - {url: 'https://docs.metamarkets.com/docs/integration-guide-for-exchanges.md', http_status: 200, fetched: '2026-08-12'}

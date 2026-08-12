@@ -1,21 +1,53 @@
-generated: '2026-07-20'
+generated: '2026-08-12'
 method: probed
 note: >-
-  Probed the /.well-known/ discovery surface on the primary Metamarkets host.
-  metamarkets.com resolves but serves a "Site Not Configured | 404" page (the
-  company was acquired by Snap Inc. in 2017 and the primary site is defunct);
-  no well-known discovery documents are published. Absence recorded as valid
-  data. The only surviving live surface is the legacy docs at
-  docs.metamarkets.com (ReadMe-hosted).
-host: https://metamarkets.com
-documents:
-  - path: /.well-known/security.txt
-    status: 404
-  - path: /.well-known/openid-configuration
-    status: 404
-  - path: /.well-known/oauth-authorization-server
-    status: 404
-  - path: /.well-known/api-catalog
-    status: 404
-  - path: /.well-known/ai-plugin.json
-    status: 404
+  Probed the /.well-known/ discovery surface on EVERY Metamarkets host: the primary
+  site (metamarkets.com, which resolves but serves a "Site Not Configured | 404"
+  page since the 2017 Snap Inc. acquisition), the surviving ReadMe-hosted legacy
+  docs host (docs.metamarkets.com), and the documented RDI ingestion host
+  (rt-evaluate.metamarkets.com). The second documented test host, rt-test.mmx.io,
+  no longer resolves at all (connection failure, recorded as status 0). Every path
+  on every reachable host returns 404 — no security.txt, no OIDC/OAuth discovery,
+  no api-catalog, no ai-plugin, no A2A agent card at either the canonical
+  /.well-known/agent-card.json or the legacy /.well-known/agent.json. Absence
+  recorded as valid data; NO WellKnown, SecurityTxt or AgentCard pointer is emitted
+  because nothing is served.
+hosts:
+  - host: https://metamarkets.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://docs.metamarkets.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://rt-evaluate.metamarkets.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://rt-test.mmx.io
+    unreachable: true
+    documents:
+      - {path: /.well-known/agent-card.json, status: 0}
+      - {path: /.well-known/agent.json, status: 0}
+      - {path: /.well-known/security.txt, status: 0}
+      - {path: /.well-known/openid-configuration, status: 0}
+      - {path: /.well-known/oauth-authorization-server, status: 0}
+      - {path: /.well-known/api-catalog, status: 0}
+      - {path: /.well-known/ai-plugin.json, status: 0}
+checked: '2026-08-12'

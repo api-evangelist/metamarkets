@@ -53,3 +53,22 @@ error_handling:
   ref: errors/metamarkets-problem-types.yml
 support:
   email: support@metamarkets.com
+payload_contract:
+  ref: data-model/metamarkets-data-model.yml
+  examples: examples/metamarkets-rdi-examples.yml
+  vocabulary: vocabulary/metamarkets-vocabulary.yml
+  note: >-
+    Added 2026-08-12. The RDI record schema (OpenRTB 2.5-based auction summary,
+    impression, click and conversion records) is the real contract for this API,
+    since there is no OpenAPI; it is captured in data-model/ with the provider's
+    verbatim examples in examples/.
+alternate_delivery:
+  batch_s3:
+    docs: https://docs.metamarkets.com/docs/batch-data-delivery
+    note: >-
+      Besides the HTTPS RDI endpoint, Metamarkets ingests the same JSON records in
+      batch via a customer-owned Amazon S3 bucket (hourly-aligned directories,
+      gzipped plain-text JSON, ~50-100MB per file) that Metamarkets is granted
+      read-only access to. This is a file-delivery channel, not an HTTP API, so no
+      apis[] entry or baseURL is asserted for it.
+lifecycle_ref: lifecycle/metamarkets-lifecycle.yml

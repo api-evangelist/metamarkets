@@ -1,0 +1,88 @@
+generated: '2026-08-12'
+method: searched
+source: https://docs.metamarkets.com/docs/glossary
+note: >-
+  Terms and definitions captured verbatim from the published Metamarkets
+  Technical Documentation Glossary, which defines the vocabulary of the
+  Metamarkets analytics platform and its Real-Time Data Ingestion (RDI) surface.
+  Definitions are the provider's own words; nothing is added or interpreted.
+name: Metamarkets Platform Vocabulary
+docs: https://docs.metamarkets.com/docs/glossary
+terms:
+  - term: Backfill / Batch Clean Up
+    definition: >-
+      Adding missing data to a data set that has already been ingested by the
+      Metamarkets Realtime Data Ingestion (RDI) platform.
+  - term: Batch Files
+    definition: >-
+      The files containing the data being uploaded to the Metamarkets HTTP
+      endpoints. Also called "data files" and log files.
+  - term: Cardinality
+    definition: >-
+      Used to describe the degree to which dimensions aggregate in Druid.
+      Dimensions with high cardinality will aggregate poorly, for example zip code.
+  - term: Dashboard
+    definition: >-
+      The Metamarkets dashboard (or "dash") is a web-based analytics application
+      used to view and query data in real time.
+  - term: Data Ingestion
+    definition: >-
+      The process of taking in data that is being uploaded. Metamarkets Realtime
+      Data Ingestion (RDI) is the platform that ingests data via an HTTP endpoint,
+      processes it, and then surfaces data in the Metamarkets dashboard.
+  - term: Dimension
+    definition: >-
+      A field containing values that are typically strings and are not aggregated
+      (e.g., country codes). Dimensions with values that can be aggregated are
+      usually treated as metrics.
+  - term: Event
+    definition: >-
+      A record summarizing a transaction, such as results from an auction. Events
+      are encapsulated as JSON objects.
+  - term: HTTP endpoint
+    definition: >-
+      An interface with a URL for an address. The URL is used by the remote program
+      to connect to the endpoint. The endpoints provided by Metamarkets require
+      HTTPS (encrypted HTTP) to protect credentials and data.
+  - term: Log Files
+    definition: >-
+      The files containing the data being uploaded to the Metamarkets HTTP
+      endpoints. Also called "data files" and batch files.
+  - term: Lookup Table
+    definition: >-
+      A file containing key-value mappings. Typically a code (the key) is mapped to
+      a longer string of characters (the value). This allows senders to create more
+      compact data since only the codes need to be provided. After the data is
+      ingested, the lookup table is used to expand the data with the stored values.
+  - term: Metric
+    definition: >-
+      A field containing values that can be aggregated, such as number of clicks or
+      impressions served. Data metrics are contained in or inferred from raw data.
+      Computed metrics are calculated after data is ingested and while it is being
+      processed.
+  - term: No Bid
+    definition: >-
+      A valid bid response (status of 1 in the bid response object) that contains an
+      empty seat bid.
+  - term: OpenRTB API Specification
+    definition: >-
+      The Open Real-Time Bidding API specification is the main standard on which the
+      schema required for using the Metamarkets Realtime Data Ingestion (RDI) is based.
+    reference: https://www.iab.com/guidelines/
+  - term: Realtime Data Ingestion (RDI)
+    definition: >-
+      Realtime Data Ingestion is the Metamarkets data intake and processing platform.
+      RDI is designed to ingest, process, and surface current data in seconds.
+  - term: Record
+    definition: >-
+      An event that summarizes a single time-series data point, encapsulated in a
+      JSON object. An auction record, for example, summarizes an RTB auction,
+      including bids.
+  - term: S3
+    definition: >-
+      Simple Storage Service is on-line file storage, part of Amazon Web Services.
+      The root S3 storage partition is referred to as a bucket.
+x-evidence:
+  fetched: '2026-08-12'
+  url: https://docs.metamarkets.com/docs/glossary.md
+  http_status: 200

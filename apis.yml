@@ -36,13 +36,13 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-12'
   status: enriched
-  artifacts_added: 12
+  artifacts_added: 8
   pass: local-v1
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-12'
 tags:
 - Company
 - Advertising
@@ -76,6 +76,14 @@ apis:
     url: rate-limits/metamarkets-rate-limits.yml
   - type: Sandbox
     url: sandbox/metamarkets-sandbox.yml
+  - type: APIReference
+    url: https://docs.metamarkets.com/docs/real-time-data-delivery
+  - type: DataModel
+    url: data-model/metamarkets-data-model.yml
+  - type: Examples
+    url: examples/metamarkets-rdi-examples.yml
+  - type: Lifecycle
+    url: lifecycle/metamarkets-lifecycle.yml
 common:
 - type: DomainSecurity
   url: security/metamarkets-domain-security.yml
@@ -109,6 +117,18 @@ common:
   url: conformance/metamarkets-conformance.yml
 - type: Components
   url: components/metamarkets-components.yml
+- type: APIReference
+  url: https://docs.metamarkets.com/docs/real-time-data-delivery
+- type: Vocabulary
+  url: vocabulary/metamarkets-vocabulary.yml
+- type: DataModel
+  url: data-model/metamarkets-data-model.yml
+- type: Examples
+  url: examples/metamarkets-rdi-examples.yml
+- type: Plans
+  url: plans/metamarkets-plans-pricing.yml
+- type: Lifecycle
+  url: lifecycle/metamarkets-lifecycle.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

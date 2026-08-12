@@ -1,0 +1,170 @@
+{
+  "id": "AFEWSEBD5EB5FI32DASFCD452BB78DVE",
+  "timestamp": "2014-03-05T04:58:23.000Z",
+  "at": 2,
+  "bcat": ["IAB26","IAB25"],
+  "imp": [
+    {
+      "tagid": "231",
+      "displaymanager": "MyRenderer",
+      "displaymanagerver": "v2",
+      "secure": 0,
+      "bidfloor": 0.1,
+      "banner": {
+        "h": 320,
+        "w": 50,
+        "pos": 3,
+        "expandable": [2,3],
+        "api": [3,4]
+      }
+    }
+  ],
+  "app": {
+    "id": "12312312",
+    "name": "Unicornssay",
+    "domain": "unicornssay.com",
+    "bundle": "bundlename",
+    "cat": [
+      "IAB1"
+    ],
+    "publisher": {
+      "id": "DSA1394D42D3",
+      "name": "Unicornssay"
+    }
+  },
+  "site": {
+    "id": "1345135123",
+    "name": "Unicornssay",
+    "domain": "unicornssay.com",
+    "cat": [
+      "IAB1",
+      "IAB2"
+    ],
+    "publisher": {
+      "name": "Publisher A",
+      "id": "pub12345"
+    }
+  },
+  "device": {
+    "geo": {
+      "city": "US  SFO",
+      "country": "USA",
+      "region": "CA",
+      "zip": "94107",
+      "type": 1,
+      "metro": "807"
+    },
+    "connectiontype": 2,
+    "devicetype": 1,
+    "osv": "4.2.1",
+    "os": "iOS",
+    "model": "iPhone 3GS",
+    "make": "Apple",
+    "carrier": "Verizon",
+    "ip": "192.168.1.8",
+    "didsha1": "AA003EABFB29E6F759F3BDAB34E50BB11",
+    "dpidmd5": "A4003FABFB52E6F8A4003FABFB52E6F81",
+    "ext": {
+      "uid": "AA000DFE74168477C70D291f57"
+    }
+  },
+  "user": {
+    "id": "456789876567897654678987656789",
+    "yob": 1987,
+    "gender": "M",
+    "data": [
+      {
+        "id": "123",
+        "name": "bluesky",
+        "segment": [
+          {
+            "id": "abc1",
+            "name": "gender",
+            "value": "male"
+          }
+        ]
+      }
+    ]
+  },
+  "bid_responses": [
+    {
+      "timestamp": "2014-03-05T04:58:23.200Z",
+      "status": 1,
+      "total_duration": 43,
+      "bidder_id": "1921",
+      "bidder_name": "Real Ads",
+      "cur": "USD",
+      "seatbid": [
+        {
+          "seat": "512",
+          "bid": [
+            {
+              "status": 1,
+              "clear_price": 1.1,
+              "attr": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                12
+              ],
+              "crid": "1234",
+              "cid": "229",
+              "id": "1",
+              "impid": "102",
+              "price": 5.43,
+              "adid": "314",
+              "adomain": [
+                "realtime4real.mmx.org"
+              ],
+              "iurl": "http://adserver.com/pathtosampleimage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": "2014-03-05T04:58:23.200Z",
+      "status": 1,
+      "total_duration": 99,
+      "bidder_id": "1325",
+      "bidder_name": "JumpUp",
+      "cur": "USD",
+      "seatbid": [
+        {
+          "seat": "12",
+          "bid": [
+            {
+              "status": 3,
+              "attr": [
+                1,
+                12
+              ],
+              "crid": "12333",
+              "cid": "2232",
+              "id": "1",
+              "impid": "102",
+              "price": 1.1,
+              "adid": "33",
+              "adomain": [
+                "carscarscars.com"
+              ],
+              "iurl": "http://adserver.com/pathtosampleimage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": "2014-03-05T04:58:23.800Z",
+      "status": 3,
+      "total_duration": 303,
+      "bidder_id": "2144",
+      "bidder_name": "Turning.com",
+      "cur": "USD"
+    }
+  ]
+}

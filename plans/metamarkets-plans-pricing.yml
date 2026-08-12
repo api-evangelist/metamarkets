@@ -1,0 +1,33 @@
+generated: '2026-08-12'
+method: searched
+source: https://docs.metamarkets.com/docs/faq
+note: >-
+  Metamarkets published NO pricing page and NO plan tiers. Pricing was negotiated
+  per customer. The provider states it plainly in its own FAQ ("How am I charged
+  for these services?"): "Our pricing models are based on the structure of the
+  data being ingested, how closely it complies with standards, and how many events
+  are uploaded. Metamarkets works with clients to determine their requirements for
+  volume and nonstandard content to determine fair pricing for each use case." The
+  billable unit is defined ("An event equals one of those records") but no rate is
+  published. The former marketing site that would have carried any pricing page is
+  gone — metamarkets.com returns HTTP 404 following the 2017 Snap Inc. acquisition.
+  plan_count: 0 is a recorded fact, not a gap in the pass.
+plan_count: 0
+plans: []
+pricing_model:
+  type: negotiated
+  basis:
+    - structure of the data being ingested
+    - how closely the data complies with standards
+    - number of events uploaded
+  billable_unit: >-
+    One event = one record (a one-line flat JSON object in standard format).
+  quota: >-
+    A per-customer volume quota (maximum events per stated time period) is agreed
+    with Metamarkets; exceeding it is signaled with HTTP 420. See
+    rate-limits/metamarkets-rate-limits.yml.
+  self_service: false
+  public_price_list: false
+x-evidence:
+  - {url: 'https://docs.metamarkets.com/docs/faq.md', http_status: 200, fetched: '2026-08-12'}
+  - {url: 'https://metamarkets.com/', http_status: 404, fetched: '2026-08-12'}
