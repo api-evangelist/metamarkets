@@ -1,17 +1,13 @@
 aid: metamarkets
 name: Metamarkets
-description: >-
-  Metamarkets built a real-time analytics platform for the programmatic
-  advertising industry, giving ad exchanges, DSPs, SSPs, and publishers an
-  interactive dashboard over billions of daily bid, impression, and spend events.
-  Its Real-Time Data Ingestion (RDI) platform ingests well-formatted,
-  standards-based ad-tech event data (adhering to OpenRTB 2.5, IAB guidelines,
-  and ISO date/country/language/currency standards) over an authenticated HTTPS
-  streaming endpoint and surfaces it in the Metamarkets dashboard within seconds
-  for querying and analysis. Metamarkets was acquired by Snap Inc. in 2017; the
-  primary metamarkets.com site is now defunct, but the legacy developer
-  documentation for the RDI platform remains live at docs.metamarkets.com.
-  Surfaced as a portfolio company of Anthemis and profiled in the API Evangelist
+description: Metamarkets built a real-time analytics platform for the programmatic advertising industry,
+  giving ad exchanges, DSPs, SSPs, and publishers an interactive dashboard over billions of daily bid,
+  impression, and spend events. Its Real-Time Data Ingestion (RDI) platform ingests well-formatted, standards-based
+  ad-tech event data (adhering to OpenRTB 2.5, IAB guidelines, and ISO date/country/language/currency
+  standards) over an authenticated HTTPS streaming endpoint and surfaces it in the Metamarkets dashboard
+  within seconds for querying and analysis. Metamarkets was acquired by Snap Inc. in 2017; the primary
+  metamarkets.com site is now defunct, but the legacy developer documentation for the RDI platform remains
+  live at docs.metamarkets.com. Surfaced as a portfolio company of Anthemis and profiled in the API Evangelist
   network.
 url: https://raw.githubusercontent.com/api-evangelist/metamarkets/refs/heads/main/apis.yml
 deliveryModel:
@@ -56,7 +52,7 @@ x-enrichment:
   pass: local-v1
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-08-12'
+modified: '2026-09-16'
 tags:
 - Company
 - Advertising
@@ -79,14 +75,13 @@ tags_raw:
 - Business Intelligence
 apis:
 - name: Metamarkets Real-Time Data Ingestion (RDI) API
-  description: >-
-    HTTPS event-ingestion API for streaming batches of newline-delimited JSON,
-    OpenRTB 2.5-based ad-tech event records (e.g. MmxAuctionSummary) to the
-    Metamarkets platform for near-real-time dashboarding. Authenticated with HTTP
-    Basic; gzip supported; quota-signaled with HTTP 420.
+  description: HTTPS event-ingestion API for streaming batches of newline-delimited JSON, OpenRTB 2.5-based
+    ad-tech event records (e.g. MmxAuctionSummary) to the Metamarkets platform for near-real-time dashboarding.
+    Authenticated with HTTP Basic; gzip supported; quota-signaled with HTTP 420.
   humanURL: https://docs.metamarkets.com/docs/real-time-data-delivery
   baseURL: https://rt-evaluate.metamarkets.com/events/
-  x-baseURL-note: Documented evaluation ingestion host; production endpoints are issued per customer by a Metamarkets data engineer.
+  x-baseURL-note: Documented evaluation ingestion host; production endpoints are issued per customer by
+    a Metamarkets data engineer.
   properties:
   - type: Documentation
     url: https://docs.metamarkets.com/docs/getting-started
@@ -109,6 +104,8 @@ apis:
   - type: Lifecycle
     url: lifecycle/metamarkets-lifecycle.yml
 common:
+- type: Website
+  url: https://metamarkets.com
 - type: DomainSecurity
   url: security/metamarkets-domain-security.yml
 - type: Documentation
