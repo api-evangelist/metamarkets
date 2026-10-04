@@ -39,7 +39,7 @@ accessModel:
 image: https://files.readme.io/7e7ea7f-small-MMX-logo.png
 x-type: company
 x-source: vc-portfolio
-x-status: acquired-defunct
+x-status: defunct
 x-status-note: Acquired by Snap Inc. in 2017; primary site defunct, legacy RDI docs live at docs.metamarkets.com
 x-backed-by:
 - anthemis
@@ -63,6 +63,7 @@ tags:
 - Programmatic Advertising
 - OpenRTB
 - Business Intelligence
+- Defunct
 tags_raw:
 - Company
 - Advertising
@@ -73,6 +74,7 @@ tags_raw:
 - Programmatic Advertising
 - OpenRTB
 - Business Intelligence
+- Defunct
 apis:
 - name: Metamarkets Real-Time Data Ingestion (RDI) API
   description: HTTPS event-ingestion API for streaming batches of newline-delimited JSON, OpenRTB 2.5-based
