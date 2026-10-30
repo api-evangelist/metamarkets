@@ -64,6 +64,79 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Metamarkets is a company surfaced as a portfolio company of anthemis and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+> **No longer operating.** This company or product has shut down, been discontinued, or been deprecated. This profile is kept as a historical record and is not maintained or rated.
 
-Backed by: anthemis
+Metamarkets built a real-time analytics platform for the programmatic advertising industry, giving ad exchanges, DSPs, SSPs, and publishers an interactive dashboard over billions of daily bid, impression, and spend events. Its Real-Time Data Ingestion (RDI) platform ingests well-formatted, standards-based ad-tech event data (adhering to OpenRTB 2.5, IAB guidelines, and ISO date/country/language/currency standards) over an authenticated HTTPS streaming endpoint and surfaces it in the Metamarkets dashboard within seconds for querying and analysis. Metamarkets was acquired by Snap Inc. in 2017; the primary metamarkets.com site is now defunct, but the legacy developer documentation for the RDI platform remains live at docs.metamarkets.com. Surfaced as a portfolio company of Anthemis and profiled in the API Evangelist network.
+
+**Areas:** Company · Advertising · AdTech · Analytics · Real-Time · Data Ingestion · Programmatic Advertising · OpenRTB · Business Intelligence · Defunct
+
+## Metamarkets on APIs.io (historical record)
+
+Everything profiled for Metamarkets is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/metamarkets/](https://apis.io/providers/metamarkets/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Metamarkets Real-Time Data Ingestion (RDI) API](https://apis.io/apis/metamarkets/metamarkets-real-time-data-ingestion-rdi-api/) — HTTPS event-ingestion API for streaming batches of newline-delimited JSON, OpenRTB 2.5-based ad-tech event records (e.g. MmxAuctionSummary) to the…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Metamarkets Platform Vocabulary](https://apis.io/vocabularies/metamarkets/metamarkets-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Metamarkets Auction Summary Record](https://apis.io/examples/metamarkets/metamarkets-auction-summary-record/)
+- [Metamarkets Click Record](https://apis.io/examples/metamarkets/metamarkets-click-record/)
+- [Metamarkets Impression Record](https://apis.io/examples/metamarkets/metamarkets-impression-record/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Metamarkets Authentication](https://apis.io/security/metamarkets/metamarkets-authentication/)
+- [Metamarkets Domain Security](https://apis.io/security/metamarkets/metamarkets-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Metamarkets Plans Pricing](https://apis.io/plans/metamarkets/metamarkets-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Metamarkets Rate Limits](https://apis.io/rate-limits/metamarkets/metamarkets-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://metamarkets.com)
+- [Documentation](https://docs.metamarkets.com/docs/getting-started)
+- [Getting started](https://docs.metamarkets.com/docs/getting-started)
+- [API reference](https://docs.metamarkets.com/docs/real-time-data-delivery)
+- [GitHub](https://github.com/metamx)
+
+## API Evangelist rating
+
+**Not rated** — this company is recorded as no longer operating, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Metamarkets: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/metamarkets/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
